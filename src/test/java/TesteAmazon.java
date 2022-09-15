@@ -15,51 +15,47 @@ import java.util.concurrent.TimeUnit;
 
 public class TesteAmazon {
 
-    @Test
-    public void abrirBrowserComSucesso() {
+    public WebDriver driver;
+
+    @Before
+    public void abrirPagina() {
         // Local onde o Selenium abre o drive do firefox
         System.setProperty("webdriver.gecko.driver", "src/test/resources/firefox/geckodriver");
-        WebDriver driver = new FirefoxDriver();
+        driver = new FirefoxDriver();
         // Abrir uma janela do drive
         driver.manage().window().maximize();
+        driver.manage().deleteAllCookies();
         // Insirir no navegador a instrução para ir no site da Amazon
         driver.get("https://www.amazon.com.br/");
-        // Checar se abriu corretamente o site da Amazon atraves do title
-        Assert.assertEquals("Amazon.com.br | Tudo pra você, de A a Z.", driver.getTitle());
+    }
+
+    //Depois que o teste encerar
+    @After
+    public void fecharNavegador() {
         // Fechar a conexão com o navegador
         driver.quit();
     }
 
+
+    @Test
+    public void abrirBrowserComSucesso() {
+        // Checar se abriu corretamente o site da Amazon atraves do title
+        Assert.assertEquals("Amazon.com.br | Tudo pra você, de A a Z.", driver.getTitle());
+
+    }
+
     @Test
     public void clicarMaisVendidosMenu() {
-        // Local onde o Selenium abre o drive do firefox
-        System.setProperty("webdriver.gecko.driver", "src/test/resources/firefox/geckodriver");
-        WebDriver driver = new FirefoxDriver();
-        // Abrir uma janela do drive
-        driver.manage().window().maximize();
-        // Insirir no navegador a instrução para ir no site da Amazon
-        driver.get("https://www.amazon.com.br/");
-
+        // Clicar no menu
         driver.findElement(By.id("nav-hamburger-menu")).click();
-
         //Esperar e clicar
         WebDriverWait wait = new WebDriverWait(driver, 5);
         wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Mais Vendidos")));
-
-        driver.quit();
 
     }
 
     @Test
     public void deveVerificarValoresDropdownPesquisa() {
-        // Local onde o Selenium abre o drive do firefox
-        System.setProperty("webdriver.gecko.driver", "src/test/resources/firefox/geckodriver");
-        // Abrir uma janela do drive
-        WebDriver driver = new FirefoxDriver();
-        driver.manage().window().maximize();
-        // Insirir no navegador a instrução para ir no site da Amazon
-        driver.get("https://www.amazon.com.br/");
-
         //identificar o campo do combo
         WebElement element = driver.findElement(By.id("searchDropdownBox"));
         //selecionar um elemento do combo
@@ -77,18 +73,10 @@ public class TesteAmazon {
         }
         Assert.assertTrue(encontrou);
 
-        driver.quit();
-
     }
 
     @Test
     public void devePesquisarComBarraDePesquisa() {
-        // Local onde o Selenium abre o drive do firefox
-        System.setProperty("webdriver.gecko.driver", "src/test/resources/firefox/geckodriver");
-        WebDriver driver = new FirefoxDriver();
-        // Abrir uma janela do drive
-        driver.manage().window().maximize();
-        driver.manage().deleteAllCookies();
         // Tempo limite de carregamento da página
         driver.manage().timeouts().pageLoadTimeout(4, TimeUnit.SECONDS);
         // Esperar implicitamente
@@ -105,12 +93,10 @@ public class TesteAmazon {
         // Escrever 1984 no buscador e clicar para pesquisar
         driver.findElement(By.xpath("//*[@id=\"twotabsearchtextbox\"]")).sendKeys("1984");
         driver.findElement(By.id("nav-search-submit-button")).click();
-
         //Verificar se a tela de pesquisa foi aberta
         Assert.assertTrue(driver.findElement(By.className("sg-col-inner")).getText().contains("resultados para"));
-
-        // Fecho a conexão com o navegador
-        driver.quit();
+        //Verificar se a tela de pesquisa foi aberta
+        Assert.assertTrue(driver.findElement(By.className("sg-col-inner")).getText().contains("resultados para"));
 
     }
 }
