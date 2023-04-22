@@ -19,37 +19,29 @@ public class TesteAmazon {
 
     @Before
     public void abrirPagina() {
-        // Local onde o Selenium abre o drive do firefox
         System.setProperty("webdriver.chrome.driver", "src/test/resources/navegador/chromedriver");
         driver = new ChromeDriver();
-        // Abrir uma janela do drive
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
-        // Insirir no navegador a instrução para ir no site da Amazon
         driver.get(constantes.URL_AMAZON);
         dsl = new Dsl(driver);
     }
 
-    //Depois que o teste encerar
     @After
     public void fecharNavegador() {
-        // Fechar a conexão com o navegador
         dsl.fecharNavegador();
 
     }
 
     @Test
     public void abrirBrowserComSucesso() {
-        // Checar se abriu corretamente o site da Amazon atraves do title
         Assert.assertEquals("Amazon.com.br | Tudo pra você, de A a Z.", driver.getTitle());
 
     }
 
     @Test
     public void clicarMaisVendidosMenu() {
-        // Clicar no menu
         dsl.click("nav-hamburger-menu");
-        //Esperar e clicar
         dsl.esperarEClicar(5, "Mais Vendidos");
 
     }
@@ -77,9 +69,7 @@ public class TesteAmazon {
 
     @Test
     public void devePesquisarComBarraDePesquisa() {
-//        // Tempo limite de carregamento da página
         dsl.tempoCarrementoPagina(4);
-        // Esperar implicitamente
         dsl.esperarPaginaAbrir(3);
 
         //Aguardar 2 segundos para aguardar elemento visivel ou lançar a exceção
@@ -90,10 +80,9 @@ public class TesteAmazon {
         } catch (Exception e) {
             Assert.fail(constantes.ERROR_TIME_OUT_ELEMENT);
         }
-        // Escrever 1984 no buscador e clicar para pesquisar
+
         dsl.escreverByXpath("//*[@id=\"twotabsearchtextbox\"]", "1984");
         dsl.click("nav-search-submit-button");
-        //Verificar se a tela de pesquisa foi aberta
         Assert.assertTrue(dsl.checarElementoByName("sg-col-inner","resultados para"));
 
     }
