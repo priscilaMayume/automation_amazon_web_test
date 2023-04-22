@@ -16,6 +16,7 @@ public class TesteAmazon {
     private WebDriver driver;
     private Dsl dsl;
     private Constantes constantes;
+    private AmazonPage page;
 
     @Before
     public void abrirPagina() {
@@ -25,6 +26,7 @@ public class TesteAmazon {
         driver.manage().deleteAllCookies();
         driver.get(constantes.URL_AMAZON);
         dsl = new Dsl(driver);
+        page = new AmazonPage(driver);
     }
 
     @After
@@ -41,7 +43,7 @@ public class TesteAmazon {
 
     @Test
     public void clicarMaisVendidosMenu() {
-        dsl.click("nav-hamburger-menu");
+        page.setNavMenuHamburguerPrincipalClick();
         dsl.esperarEClicar(5, "Mais Vendidos");
 
     }
