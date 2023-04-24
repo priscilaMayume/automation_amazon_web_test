@@ -1,4 +1,6 @@
-# amazon_treinamento_selenium
-Treinamento de testes automatizados usando o Selenium e Junit através do site da Amazon. 
 
-O projeto foi desenvolvido em Java 8 e utilizou o geckodriver pra linux 64
+Testes automatizados em uma aplicação WEB (https://www.amazon.com.br/) - A automação foi feita com Selenium + Java
+
+#
+
+Automated tests in a WEB application (https://www.amazon.com.br/) - The automation was done with Selenium + Java
