@@ -20,7 +20,7 @@ public class TesteAmazon {
 
     @Before
     public void abrirPagina() {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/navegador/chromedriver");
+        System.setProperty("webdriver.chrome.driver", constantes.PATH_CHROMEDRIVER);
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
@@ -37,21 +37,21 @@ public class TesteAmazon {
 
     @Test
     public void abrirBrowserComSucesso() {
-        Assert.assertEquals("Amazon.com.br | Tudo pra você, de A a Z.", driver.getTitle());
+        Assert.assertEquals(constantes.TITLE_AMAZON, driver.getTitle());
 
     }
 
     @Test
     public void clicarMaisVendidosMenu() {
         page.setNavMenuHamburguerPrincipalClick();
-        dsl.esperarEClicar(5, "Mais Vendidos");
+        dsl.esperarEClicar(constantes.NUMERO_5, constantes.CAMPO_MAIS_VENDIDOS);
 
     }
 
     @Test
     public void deveVerificarValoresDropdownPesquisa() {
         //identificar o campo do combo
-        WebElement element = dsl.buscarElementoById("searchDropdownBox");
+        WebElement element = page.setBuscarDropdownBox();
 //        //selecionar um elemento do combo
         Select box = new Select(element);
         //retorna uma lista de WebElements
@@ -60,7 +60,7 @@ public class TesteAmazon {
         //Se uma determinada opção está presente no combo
         boolean encontrou = false;
         for (WebElement option : options) {
-            if (option.getText().equals(Constantes.CAMPO_GAMES)) {
+            if (option.getText().equals(constantes.CAMPO_GAMES)) {
                 encontrou = true;
                 break;
             }
@@ -71,21 +71,21 @@ public class TesteAmazon {
 
     @Test
     public void devePesquisarComBarraDePesquisa() {
-        dsl.tempoCarrementoPagina(4);
-        dsl.esperarPaginaAbrir(3);
+        dsl.tempoCarrementoPagina(constantes.NUMERO_4);
+        dsl.esperarPaginaAbrir(constantes.NUMERO_3);
 
         //Aguardar 2 segundos para aguardar elemento visivel ou lançar a exceção
         try {
-            WebDriverWait driverWait = new WebDriverWait(driver, 6);
+            WebDriverWait driverWait = new WebDriverWait(driver, constantes.NUMERO_6);
             driverWait.until(ExpectedConditions.visibilityOf(
-                    dsl.buscarElementoByXpath("//*[@id=\"twotabsearchtextbox\"]")));
+                    page.setBuscarTextoBuscador()));
         } catch (Exception e) {
             Assert.fail(constantes.ERROR_TIME_OUT_ELEMENT);
         }
 
-        dsl.escreverByXpath("//*[@id=\"twotabsearchtextbox\"]", "1984");
-        dsl.click("nav-search-submit-button");
-        Assert.assertTrue(dsl.checarElementoByName("sg-col-inner","resultados para"));
+        page.setEscreverTextoBuscador();
+        page.setClicarParaBuscarTexto();
+        Assert.assertTrue(page.setBuscarResultados());
 
     }
 }
