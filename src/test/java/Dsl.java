@@ -60,4 +60,22 @@ public class Dsl {
 
     }
 
+    public void esperarELementoById(Integer segundos, String elementById) {
+        WebDriverWait wait = new WebDriverWait(driver, segundos);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(elementById)));
+
+    }
+
+    public void esperarELementoTagName(Integer segundos, String elementTagName) {
+        WebDriverWait wait = new WebDriverWait(driver, segundos);
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.tagName("body"), elementTagName));
+
+    }
+
+    public void esperarELementoXPath(Integer segundos, String elementXPath) {
+        WebDriverWait wait = new WebDriverWait(driver, segundos);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(elementXPath)));
+
+    }
+
 }
