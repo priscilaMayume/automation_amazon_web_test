@@ -3,7 +3,7 @@ import org.openqa.selenium.WebElement;
 
 public class AmazonPage {
 
-    private Constantes constantes;
+    public Constantes constantes;
     private Dsl dsl;
 
     public AmazonPage(WebDriver driver) {

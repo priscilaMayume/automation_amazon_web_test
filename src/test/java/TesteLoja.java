@@ -15,7 +15,7 @@ public class TesteLoja {
 
     private WebDriver driver;
     private Dsl dsl;
-    private Constantes constantes;
+    public Constantes constantes;
     private AmazonPage page;
 
     @Before
@@ -52,7 +52,7 @@ public class TesteLoja {
     public void deveVerificarValoresDropdownPesquisa() {
         //identificar o campo do combo
         WebElement element = page.setBuscarDropdownBox();
-//        //selecionar um elemento do combo
+        //selecionar um elemento do combo
         Select box = new Select(element);
         //retorna uma lista de WebElements
         List<WebElement> options = box.getOptions();
