@@ -16,7 +16,7 @@ public class TesteLoja {
     private WebDriver driver;
     private Dsl dsl;
     public Constantes constantes;
-    private AmazonPage page;
+    private AmazonBuscadorPage page;
 
     @Before
     public void abrirPagina() {
@@ -26,7 +26,7 @@ public class TesteLoja {
         driver.manage().deleteAllCookies();
         driver.get(constantes.URL_AMAZON);
         dsl = new Dsl(driver);
-        page = new AmazonPage(driver);
+        page = new AmazonBuscadorPage(driver);
     }
 
     @After

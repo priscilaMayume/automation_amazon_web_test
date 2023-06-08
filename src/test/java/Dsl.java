@@ -55,6 +55,22 @@ public class Dsl {
 
     }
 
+    public boolean checarElementoById(String id, String nome) {
+        return driver.findElement(By.id(id)).getText().contains(nome);
+
+    }
+
+    public boolean checarElementoByXpath(String xpath, String nome) {
+        return driver.findElement(By.xpath(xpath)).getText().contains(nome);
+
+    }
+
+    public boolean checarElementoByClass(String nameClass, String nome) {
+        return driver.findElement(By.className(nameClass)).getText().contains(nome);
+
+    }
+
+
     public void fecharNavegador() {
         driver.quit();
 

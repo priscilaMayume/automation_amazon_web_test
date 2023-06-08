@@ -1,12 +1,12 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class AmazonPage {
+public class AmazonBuscadorPage {
 
     public Constantes constantes;
     private Dsl dsl;
 
-    public AmazonPage(WebDriver driver) {
+    public AmazonBuscadorPage(WebDriver driver) {
         dsl = new Dsl(driver);
 
     }
