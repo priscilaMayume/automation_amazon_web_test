@@ -5,6 +5,11 @@ public class AmazonBuscadorPage {
 
     public Constantes constantes;
     private Dsl dsl;
+    String menuHambueger = "nav-hamburger-menu";
+    String searchDropdownBox = "searchDropdownBox";
+    String searchTextBox = "//*[@id=\"twotabsearchtextbox\"]";
+    String submitButton = "nav-search-submit-button";
+    String sgColInner = "sg-col-inner";
 
     public AmazonBuscadorPage(WebDriver driver) {
         dsl = new Dsl(driver);
@@ -12,32 +17,32 @@ public class AmazonBuscadorPage {
     }
 
     public void setNavMenuHamburguerPrincipalClick() {
-        dsl.click("nav-hamburger-menu");
+        dsl.click(menuHambueger);
 
     }
 
     public WebElement setBuscarDropdownBox() {
-        return dsl.buscarElementoById("searchDropdownBox");
+        return dsl.buscarElementoById(searchDropdownBox);
 
     }
 
     public WebElement setBuscarTextoBuscador() {
-        return dsl.buscarElementoByXpath("//*[@id=\"twotabsearchtextbox\"]");
+        return dsl.buscarElementoByXpath(searchTextBox);
 
     }
 
     public void setEscreverTextoBuscador() {
-        dsl.escreverByXpath("//*[@id=\"twotabsearchtextbox\"]", "1984");
+        dsl.escreverByXpath(searchTextBox, Constantes.L_1984);
 
     }
 
     public void setClicarParaBuscarTexto() {
-        dsl.click("nav-search-submit-button");
+        dsl.click(submitButton);
 
     }
 
     public boolean setBuscarResultados() {
-        return dsl.checarElementoByName("sg-col-inner", constantes.CAMPO_RESULTADO_PARA);
+        return dsl.checarElementoByName(sgColInner, constantes.CAMPO_RESULTADO_PARA);
 
     }
 

@@ -76,7 +76,7 @@ public class TesteLoja {
 
         //Aguardar 2 segundos para aguardar elemento visivel ou lançar a exceção
         try {
-            WebDriverWait driverWait = new WebDriverWait(driver, constantes.NUMERO_6);
+            WebDriverWait driverWait = new WebDriverWait(driver, constantes.NUMERO_2);
             driverWait.until(ExpectedConditions.visibilityOf(
                     page.setBuscarTextoBuscador()));
         } catch (Exception e) {

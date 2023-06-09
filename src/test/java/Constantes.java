@@ -12,6 +12,7 @@ public class Constantes {
     public static final Integer NUMERO_4 = 4;
     public static final Integer NUMERO_5 = 5;
     public static final Integer NUMERO_6 = 6;
+    public static final String L_1984 = "1984";
     public static final String EMAL_VALIDO = "jose.test.automation@gmail.com";
     public static final String EMAL_INVALIDO = "sasaksoojcvd@okdos.com";
     public static final String PSW_VALIDO = "brasil@123";
