@@ -6,3 +6,5 @@ git spull# Default ignored files
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+/target
+.idea
