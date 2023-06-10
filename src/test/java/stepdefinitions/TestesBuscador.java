@@ -10,7 +10,9 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
@@ -34,13 +36,8 @@ public class TestesBuscador {
         page = new AmazonBuscadorPage(driver);
     }
 
-    @E("^fecho o browser$")
-    public void fechoOBrowser() {
-        dsl.fecharNavegador();
-    }
-
     @Entao("^deve esta visivel title aws$")
-    public void deveEstaVisivelTitleAws()  {
+    public void deveEstaVisivelTitleAws() {
         Assert.assertEquals(constantes.TITLE_AMAZON, driver.getTitle());
 
     }
@@ -73,9 +70,38 @@ public class TestesBuscador {
 
     }
 
-    @Entao("^encontro com sucesso a opcao de games$")
-    public void encontroComSucessoAOpcaoDeGames() {
+    @Entao("^encontrar com sucesso a opcao de games$")
+    public void encontrarComSucessoAOpcaoDeGames() {
         Assert.assertTrue(encontrou);
+    }
+
+    @E("^deve pesquisar com barra de pesquisa$")
+    public void devePesquisarComBarraDePesquisa() {
+        dsl.tempoCarrementoPagina(constantes.NUMERO_4);
+        dsl.esperarPaginaAbrir(constantes.NUMERO_3);
+
+        //Aguardar 2 segundos para aguardar elemento visivel ou lançar a exceção
+        try {
+            WebDriverWait driverWait = new WebDriverWait(driver, constantes.NUMERO_2);
+            driverWait.until(ExpectedConditions.visibilityOf(
+                    page.setBuscarTextoBuscador()));
+        } catch (Exception e) {
+            Assert.fail(constantes.ERROR_TIME_OUT_ELEMENT);
+        }
+
+        page.setEscreverTextoBuscador();
+        page.setClicarParaBuscarTexto();
+    }
+
+    @E("^encontrar com sucesso o resultado da pesquisa$")
+    public void encontrarComSucessoOResultadoDaPesquisa() {
+        Assert.assertTrue(page.setBuscarResultados());
+
+    }
+
+    @E("^deve fechar o browser$")
+    public void deveFecharOBrowser() {
+        dsl.fecharNavegador();
     }
 
 }
