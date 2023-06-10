@@ -1,3 +1,5 @@
+package Constantes;
+
 public class Constantes {
 
     public static final String URL_AMAZON = "https://www.amazon.com.br/";

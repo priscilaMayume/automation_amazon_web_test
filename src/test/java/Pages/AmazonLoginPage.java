@@ -1,3 +1,7 @@
+package Pages;
+
+import Constantes.Constantes;
+import Dsl.Dsl;
 import org.openqa.selenium.WebDriver;
 
 public class AmazonLoginPage {

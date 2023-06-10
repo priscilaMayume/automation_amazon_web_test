@@ -1,3 +1,6 @@
+import Constantes.Constantes;
+import Dsl.Dsl;
+import Pages.AmazonLoginPage;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
