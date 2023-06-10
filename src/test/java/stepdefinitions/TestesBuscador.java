@@ -25,8 +25,7 @@ public class TestesBuscador {
 
     Boolean encontrou;
 
-    @Dado("^que abrir browser com sucesso$")
-    public void queAbrirBrowserComSucesso() {
+    public WebDriver acessarWeb() {
         System.setProperty("webdriver.chrome.driver", constantes.PATH_CHROMEDRIVER);
         driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -34,6 +33,14 @@ public class TestesBuscador {
         driver.get(constantes.URL_AMAZON);
         dsl = new Dsl(driver);
         page = new AmazonBuscadorPage(driver);
+
+        return driver;
+
+    }
+
+    @Dado("^que abrir browser com sucesso$")
+    public void queAbrirBrowserComSucesso() {
+        driver = acessarWeb();
     }
 
     @Entao("^deve esta visivel title aws$")

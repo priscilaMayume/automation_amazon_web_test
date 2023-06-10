@@ -21,7 +21,7 @@ public class AmazonBuscadorPage {
     }
 
     public void setNavMenuHamburguerPrincipalClick() {
-        dsl.click(menuHambueger);
+        dsl.clickById(menuHambueger);
 
     }
 
@@ -41,7 +41,7 @@ public class AmazonBuscadorPage {
     }
 
     public void setClicarParaBuscarTexto() {
-        dsl.click(submitButton);
+        dsl.clickById(submitButton);
 
     }
 

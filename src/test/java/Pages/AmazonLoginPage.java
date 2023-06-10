@@ -17,6 +17,7 @@ public class AmazonLoginPage {
     String saudacaoPersonalizada = "nav-link-accountList-nav-line-1";
     String erroMsgEmailIvalido = "//*[@id=\"auth-error-message-box\"]/div/div/ul/li/span";
     String erroMsgPswIvalido = "a-list-item";
+    String contaSair = "nav-item-signout";
 
     public AmazonLoginPage(WebDriver driver) {
         dsl = new Dsl(driver);
@@ -24,7 +25,11 @@ public class AmazonLoginPage {
     }
 
     public void setAccountClick() {
-        dsl.click(navAccountList);
+        dsl.clickById(navAccountList);
+    }
+
+    public void setAccountMover() {
+        dsl.mover(navAccountList);
     }
 
     public void setEscreverLogin() {
@@ -32,7 +37,11 @@ public class AmazonLoginPage {
     }
 
     public void setClickContinuar() {
-        dsl.click(continuar);
+        dsl.clickById(continuar);
+    }
+
+    public void setClickSair() {
+        dsl.clickById(contaSair);
     }
 
     public void setEscreverPswValido() {
@@ -40,7 +49,7 @@ public class AmazonLoginPage {
     }
 
     public void setSignInSubmitClick() {
-        dsl.click(signInSubmit);
+        dsl.clickById(signInSubmit);
     }
 
     public boolean setCheckSaudacao() {

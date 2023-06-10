@@ -3,6 +3,7 @@ package Dsl;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -15,9 +16,16 @@ public class Dsl {
         this.driver = driver;
     }
 
-    public void click(String id_campo) {
+    public void clickById(String id_campo) {
         driver.findElement(By.id(id_campo)).click();
     }
+
+    public void mover(String id_campo) {
+        WebElement element = driver.findElement(By.id(id_campo));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+    }
+
 
     public void escreverById(String id_campo, String texto) {
         driver.findElement(By.id(id_campo)).sendKeys(texto);
