@@ -6,6 +6,7 @@ import Pages.AmazonBuscadorPage;
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.E;
 import cucumber.api.java.pt.Entao;
+import cucumber.api.java.pt.Quando;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -43,20 +44,25 @@ public class TestesBuscador {
         driver = acessarWeb();
     }
 
+    @Quando("^esperar abertura da Pg principal$")
+    public void esperarAberturaDaPgPrincipal() {
+        dsl.esperarCarregarPaginaPrincipal();
+    }
+
     @Entao("^deve esta visivel title aws$")
     public void deveEstaVisivelTitleAws() {
         Assert.assertEquals(constantes.TITLE_AMAZON, driver.getTitle());
 
     }
 
-    @Entao("^deve clicar no menu dos mais vendidos$")
+    @E("^deve clicar no menu dos mais vendidos$")
     public void deveClicarNoMenuDosMaisVendidos() {
         page.setNavMenuHamburguerPrincipalClick();
-        dsl.esperarEClicar(constantes.NUMERO_5, constantes.CAMPO_MAIS_VENDIDOS);
+        dsl.esperarEClicar(constantes.NUMERO_6, constantes.CAMPO_MAIS_VENDIDOS);
 
     }
 
-    @Entao("^que verifique valores no dropdown pesquisa$")
+    @E("^que verifique valores no dropdown pesquisa$")
     public void queVerifiqueValoresNoDropdownPesquisa() {
         //identificar o campo do combo
         WebElement element = page.setBuscarDropdownBox();
@@ -89,10 +95,11 @@ public class TestesBuscador {
 
         //Aguardar 2 segundos para aguardar elemento visivel ou lançar a exceção
         try {
-            WebDriverWait driverWait = new WebDriverWait(driver, constantes.NUMERO_2);
+            WebDriverWait driverWait = new WebDriverWait(driver, constantes.NUMERO_4);
             driverWait.until(ExpectedConditions.visibilityOf(
                     page.setBuscarTextoBuscador()));
         } catch (Exception e) {
+            dsl.fecharNavegador();
             Assert.fail(constantes.ERROR_TIME_OUT_ELEMENT);
         }
 

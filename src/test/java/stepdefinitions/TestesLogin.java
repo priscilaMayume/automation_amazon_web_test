@@ -2,7 +2,6 @@ package stepdefinitions;
 
 import Constantes.Constantes;
 import Dsl.Dsl;
-import Pages.AmazonBuscadorPage;
 import Pages.AmazonLoginPage;
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.E;
@@ -38,16 +37,43 @@ public class TestesLogin {
 
     }
 
-    @Quando("^clicar na pagina do login$")
-    public void clicar_na_pagina_do_login() {
+    @Quando("^esperar a abertura da Pg principal$")
+    public void esperarAAberturaDaPgPrincipal() {
+        dsl.esperarCarregarPaginaPrincipal();
+    }
+
+    @Entao("^deve esperar o elemento de title$")
+    public void deveEsperarOElementoDeTitle() {
+        dsl.verificarTitle();
+    }
+
+    @E("^deve esperar o elemento de msg de psw errado$")
+    public void deveEsperarOElementoDeMsgDePswErrado() {
+        dsl.esperarELementoById(Constantes.NUMERO_4, Constantes.ELEMENT_ERRO_PSW);
+
+    }
+
+    @E("^deve verificar erro na msg de psw errado$")
+    public void deveVerificarErroNaMsgDePswErrado() {
+        page.setCheckErroPswInvalido();
+    }
+
+
+    @E("^clicar na pagina do login$")
+    public void clicarNaPaginaDoLogin() {
         page.setAccountClick();
 
     }
 
-    @Entao("^deve esperar o elemente de email$")
-    public void deveEsperarOElementeDeEmail() {
+    @E("^deve esperar o elemento de email$")
+    public void deveEsperarOElementoDeEmail() {
         dsl.esperarELementoById(Constantes.NUMERO_2, Constantes.ELEMENT_AP_EMAIL);
 
+    }
+
+    @E("^deve escrever login invalido$")
+    public void deveEscreverLoginInvalido() {
+        page.setEscreverLoginInvalido();
     }
 
     @E("^deve escrever login valido$")
@@ -69,6 +95,12 @@ public class TestesLogin {
     public void deveEscreverPswValida() {
         page.setEscreverPswValido();
     }
+
+    @E("^deve escrever psw invalida$")
+    public void deveEscreverPswInvalida() {
+        page.setEscreverPswInvalido();
+    }
+
 
     @E("^deve clicar em submeter$")
     public void deveClicarEmSubmeter() {
@@ -121,10 +153,26 @@ public class TestesLogin {
         }
     }
 
-    @Entao("^deve fechar o navegador$")
+    @E("^deve esperar o elemento de msg de email errado$")
+    public void deveEsperarOElementoDeMsgDeEmailErrado() {
+        dsl.esperarELementoXPath(Constantes.NUMERO_2, Constantes.ELEMENT_ERRO_MSG_EMAIL);
+    }
+
+
+    @E("^deve verificar erro na msg de email errada$")
+    public void deveVerificarErroNaMsgDeEmailErrada() {
+        Assert.assertTrue(page.setCheckErroEmailInvalido());
+    }
+
+    @E("^deve fechar o navegador$")
     public void deveFecharONavegador() {
         dsl.fecharNavegador();
 
+    }
+
+    @E("^deve verificar erro na msg de psw errada$")
+    public void deveVerificarErroNaMsgDePswErrada() {
+        Assert.assertTrue(page.setCheckErroPswInvalido());
     }
 
 }

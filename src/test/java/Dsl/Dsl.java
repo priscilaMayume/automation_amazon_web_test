@@ -1,5 +1,6 @@
 package Dsl;
 
+import Constantes.Constantes;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,6 +15,11 @@ public class Dsl {
 
     public Dsl(WebDriver driver) {
         this.driver = driver;
+    }
+
+    public void esperarCarregarPaginaPrincipal() {
+        WebDriverWait wait = new WebDriverWait(driver, Constantes.NUMERO_4);
+
     }
 
     public void clickById(String id_campo) {
@@ -101,6 +107,11 @@ public class Dsl {
     public void esperarELementoXPath(Integer segundos, String elementXPath) {
         WebDriverWait wait = new WebDriverWait(driver, segundos);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(elementXPath)));
+
+    }
+
+    public void verificarTitle() {
+        driver.getTitle();
 
     }
 

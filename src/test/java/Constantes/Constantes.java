@@ -26,5 +26,6 @@ public class Constantes {
     public static final String ELEMENT_ERRO_MSG_EMAIL = "//*[@id=\"auth-error-message-box\"]/div/div/ul/li/span";
     public static final String MSG_EXCECAO_PSW = "Sua senha está incorreta";
     public static final String MSG_EXCECAO_EMAIL = "Não encontramos uma conta associada a este endereço de e-mail";
+    public static final String ELEMENT_ERRO_PSW = "auth-error-message-box";
 
 }
