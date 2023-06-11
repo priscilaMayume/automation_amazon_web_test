@@ -64,6 +64,7 @@ public class TestesBuscador {
 
     @E("^que verifique valores no dropdown pesquisa$")
     public void queVerifiqueValoresNoDropdownPesquisa() {
+        page.setDropDownBoxPrincipalClick();
         //identificar o campo do combo
         WebElement element = page.setBuscarDropdownBox();
         //selecionar um elemento do combo

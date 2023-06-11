@@ -26,6 +26,10 @@ public class Dsl {
         driver.findElement(By.id(id_campo)).click();
     }
 
+    public void clickByXPath(String id_campo) {
+        driver.findElement(By.xpath(id_campo)).click();
+    }
+
     public void mover(String id_campo) {
         WebElement element = driver.findElement(By.id(id_campo));
         Actions actions = new Actions(driver);
