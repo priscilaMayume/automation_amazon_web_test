@@ -61,6 +61,8 @@ public class TestesLogin {
 
     @E("^clicar na pagina do login$")
     public void clicarNaPaginaDoLogin() {
+        dsl.esperarELementoById(Constantes.NUMERO_3, Constantes.ELEMENT_ACCOUNT_LIST);
+        page.setAccountMover();
         page.setAccountClick();
 
     }

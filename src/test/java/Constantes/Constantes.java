@@ -27,6 +27,6 @@ public class Constantes {
     public static final String MSG_EXCECAO_PSW = "Sua senha está incorreta";
     public static final String MSG_EXCECAO_EMAIL = "Não encontramos uma conta associada a este endereço de e-mail";
     public static final String ELEMENT_ERRO_PSW = "auth-error-message-box";
-    public static final String ELEMENT_DROPDOWN_BOX = "//*[@id=\"searchDropdownBox\"]";
+    public static final String ELEMENT_ACCOUNT_LIST = "nav-link-accountList";
 
 }
