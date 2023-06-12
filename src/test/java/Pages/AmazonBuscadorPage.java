@@ -10,7 +10,8 @@ public class AmazonBuscadorPage {
     public Constantes constantes;
     private Dsl dsl;
     String menuHambueger = "nav-hamburger-menu";
-    String searchDropdownBox = "//*[@id=\"searchDropdownBox\"]";
+    String searchDropdownBoxXPath = "//*[@id=\"searchDropdownBox\"]";
+    String searchDropdownBox = "searchDropdownBox";
     String searchTextBox = "//*[@id=\"twotabsearchtextbox\"]";
     String submitButton = "nav-search-submit-button";
     String sgColInner = "sg-col-inner";
@@ -25,13 +26,19 @@ public class AmazonBuscadorPage {
 
     }
 
+    public void setMenuHamburguerPrincipalMover() {
+        dsl.moverById(menuHambueger);
+
+    }
+
     public void setDropDownBoxPrincipalClick() {
-        dsl.clickByXPath(searchDropdownBox);
+        dsl.moverByXPath(searchDropdownBoxXPath);
+        dsl.clickByXPath(searchDropdownBoxXPath);
 
     }
 
     public WebElement setBuscarDropdownBox() {
-        return dsl.buscarElementoByXpath(searchDropdownBox);
+        return dsl.buscarElementoByXpath(searchDropdownBoxXPath);
 
     }
 

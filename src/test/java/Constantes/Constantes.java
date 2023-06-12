@@ -28,5 +28,7 @@ public class Constantes {
     public static final String MSG_EXCECAO_EMAIL = "Não encontramos uma conta associada a este endereço de e-mail";
     public static final String ELEMENT_ERRO_PSW = "auth-error-message-box";
     public static final String ELEMENT_ACCOUNT_LIST = "nav-link-accountList";
+    public static final String ELEMENT_NAVBAR_BACKUT = "//*[@id=\"navbar-backup-backup\"]/div/div[3]/a[1]";
+    public static final String ELEMENT_CONTA_SAIR = "nav-item-signout";
 
 }

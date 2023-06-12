@@ -2,6 +2,7 @@ package Dsl;
 
 import Constantes.Constantes;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -30,8 +31,14 @@ public class Dsl {
         driver.findElement(By.xpath(id_campo)).click();
     }
 
-    public void mover(String id_campo) {
+    public void moverById(String id_campo) {
         WebElement element = driver.findElement(By.id(id_campo));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+    }
+
+    public void moverByXPath(String id_campo) {
+        WebElement element = driver.findElement(By.xpath(id_campo));
         Actions actions = new Actions(driver);
         actions.moveToElement(element).perform();
     }
@@ -96,6 +103,11 @@ public class Dsl {
 
     }
 
+    public void fecharTodosOsBrowser() {
+        driver.close();
+
+    }
+
     public void esperarELementoById(Integer segundos, String elementById) {
         WebDriverWait wait = new WebDriverWait(driver, segundos);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(elementById)));
@@ -114,6 +126,35 @@ public class Dsl {
 
     }
 
+    public boolean esperarAssertELementoXPath(Integer segundos, String elementXPath) {
+        WebDriverWait wait = new WebDriverWait(driver, segundos);
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(elementXPath)));
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
+
+    public boolean esperarAssertELementoTagName(Integer segundos, String elementTagName) {
+        WebDriverWait wait = new WebDriverWait(driver, segundos);
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName(elementTagName)));
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
+
+    public boolean esperarAssertELementoId(Integer segundos, String elementId) {
+        WebDriverWait wait = new WebDriverWait(driver, segundos);
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(elementId)));
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
     public void verificarTitle() {
         driver.getTitle();
 

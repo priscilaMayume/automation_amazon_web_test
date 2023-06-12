@@ -29,3 +29,6 @@ Funcionalidade: testes de buscas
     E deve pesquisar com barra de pesquisa
     E encontrar com sucesso o resultado da pesquisa
     E deve fechar o browser
+
+#  Cenario: Fechar todos os browser abertos
+#    Entao deve fechar todos os browser

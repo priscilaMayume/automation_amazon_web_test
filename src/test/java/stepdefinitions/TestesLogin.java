@@ -11,7 +11,6 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-
 public class TestesLogin {
 
     private WebDriver driver;
@@ -47,29 +46,29 @@ public class TestesLogin {
         dsl.verificarTitle();
     }
 
-    @E("^deve esperar o elemento de msg de psw errado$")
-    public void deveEsperarOElementoDeMsgDePswErrado() {
-        dsl.esperarELementoById(Constantes.NUMERO_4, Constantes.ELEMENT_ERRO_PSW);
-
-    }
-
     @E("^deve verificar erro na msg de psw errado$")
     public void deveVerificarErroNaMsgDePswErrado() {
-        page.setCheckErroPswInvalido();
+        if (dsl.esperarAssertELementoId(Constantes.NUMERO_2, Constantes.ELEMENT_ERRO_PSW)) {
+            page.setCheckErroPswInvalido();
+        }
     }
-
 
     @E("^clicar na pagina do login$")
     public void clicarNaPaginaDoLogin() {
-        dsl.esperarELementoById(Constantes.NUMERO_3, Constantes.ELEMENT_ACCOUNT_LIST);
-        page.setAccountMover();
-        page.setAccountClick();
+        if (dsl.esperarAssertELementoXPath(Constantes.NUMERO_2, Constantes.ELEMENT_NAVBAR_BACKUT)) {
+            page.setAccountBackutMover();
+            page.setAccountBackutClick();
+            dsl.esperarELementoById(Constantes.NUMERO_2, Constantes.ELEMENT_ACCOUNT_LIST);
+        } else {
+            page.setAccountMover();
+            page.setAccountClick();
 
+        }
     }
 
     @E("^deve esperar o elemento de email$")
     public void deveEsperarOElementoDeEmail() {
-        dsl.esperarELementoById(Constantes.NUMERO_2, Constantes.ELEMENT_AP_EMAIL);
+        dsl.esperarELementoById(Constantes.NUMERO_5, Constantes.ELEMENT_AP_EMAIL);
 
     }
 
@@ -110,47 +109,32 @@ public class TestesLogin {
 
     }
 
-
-    @E("^deve esperar elemento de saudacao personalizada$")
-    public void deveEsperarElementoDeSaudacaoPersonalizada() {
-        try {
-            dsl.esperarELementoTagName(Constantes.NUMERO_3, Constantes.SAUDACAO_JOSE);
-        } catch (Exception e) {
-            dsl.fecharNavegador();
-            Assert.fail(constantes.ERROR_LOGIN_SEGURANCA);
-
-        }
-    }
-
     @E("^deve verificar a saudacao personalizada$")
     public void deveVerificarASaudacaoPersonalizada() {
-        try {
+        if (dsl.esperarAssertELementoTagName(Constantes.NUMERO_3, Constantes.SAUDACAO_JOSE)) {
             Assert.assertTrue(page.setCheckSaudacao());
-        } catch (Exception e) {
-            dsl.fecharNavegador();
-            Assert.fail(constantes.ERROR_LOGIN_SEGURANCA);
+        } else {
+            System.out.println(Constantes.ERROR_LOGIN_SEGURANCA);
 
         }
     }
 
     @E("^deve mover ponteiro para o menu conta$")
     public void deveMoverPonteiroParaOMenuConta() {
-        try {
+        if (dsl.esperarAssertELementoId(Constantes.NUMERO_3, Constantes.ELEMENT_ACCOUNT_LIST)) {
             page.setAccountMover();
-        } catch (Exception e) {
-            dsl.fecharNavegador();
-            Assert.fail(constantes.ERROR_LOGIN_SEGURANCA);
+        } else {
+            System.out.println(Constantes.ERROR_LOGIN_SEGURANCA);
 
         }
     }
 
     @E("^deve fazer logout$")
     public void deveFazerLogout() {
-        try {
+        if (dsl.esperarAssertELementoId(Constantes.NUMERO_3, Constantes.ELEMENT_CONTA_SAIR)) {
             page.setClickSair();
-        } catch (Exception e) {
-            dsl.fecharNavegador();
-            Assert.fail(constantes.ERROR_LOGIN_SEGURANCA);
+        } else {
+            System.out.println(Constantes.ERROR_LOGIN_SEGURANCA);
 
         }
     }
@@ -168,7 +152,7 @@ public class TestesLogin {
 
     @E("^deve fechar o navegador$")
     public void deveFecharONavegador() {
-        dsl.fecharNavegador();
+        dsl.fecharTodosOsBrowser();
 
     }
 

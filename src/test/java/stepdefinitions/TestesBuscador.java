@@ -41,6 +41,7 @@ public class TestesBuscador {
 
     @Dado("^que abrir browser com sucesso$")
     public void queAbrirBrowserComSucesso() {
+
         driver = acessarWeb();
     }
 
@@ -57,6 +58,7 @@ public class TestesBuscador {
 
     @E("^deve clicar no menu dos mais vendidos$")
     public void deveClicarNoMenuDosMaisVendidos() {
+        page.setMenuHamburguerPrincipalMover();
         page.setNavMenuHamburguerPrincipalClick();
         dsl.esperarEClicar(constantes.NUMERO_6, constantes.CAMPO_MAIS_VENDIDOS);
 
@@ -119,4 +121,9 @@ public class TestesBuscador {
         dsl.fecharNavegador();
     }
 
+    @Entao("^deve fechar todos os browser$")
+    public void deveFecharTodosOsBrowser() {
+        dsl.fecharTodosOsBrowser();
+
+    }
 }

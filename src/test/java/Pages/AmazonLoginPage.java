@@ -2,6 +2,7 @@ package Pages;
 
 import Constantes.Constantes;
 import Dsl.Dsl;
+import cucumber.api.java.pt.Entao;
 import org.openqa.selenium.WebDriver;
 
 public class AmazonLoginPage {
@@ -10,6 +11,7 @@ public class AmazonLoginPage {
     private AmazonLoginPage page;
 
     String navAccountList = "nav-link-accountList";
+    String navAccountBackut = "//*[@id=\"navbar-backup-backup\"]/div/div[3]/a[1]";
     String apEmail = "ap_email";
     String continuar = "continue";
     String psw = "ap_password";
@@ -29,7 +31,15 @@ public class AmazonLoginPage {
     }
 
     public void setAccountMover() {
-        dsl.mover(navAccountList);
+        dsl.moverById(navAccountList);
+    }
+
+    public void setAccountBackutMover() {
+        dsl.moverByXPath(navAccountBackut);
+    }
+
+    public void setAccountBackutClick() {
+        dsl.clickByXPath(navAccountBackut);
     }
 
     public void setEscreverLogin() {
@@ -71,6 +81,12 @@ public class AmazonLoginPage {
 
     public boolean setCheckErroPswInvalido() {
         return dsl.checarElementoByClass(erroMsgPswIvalido, constantes.MSG_EXCECAO_PSW);
+
+    }
+
+    @Entao("^deve fechar todos os navegadores$")
+    public void deveFecharTodosOsNavegadores() {
+        dsl.fecharNavegador();
 
     }
 

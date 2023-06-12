@@ -12,7 +12,6 @@ Funcionalidade: testes de login
     E deve esperar elemento de PSW
     E deve escrever psw valida
     E deve clicar em submeter
-    E deve esperar elemento de saudacao personalizada
     E deve verificar a saudacao personalizada
     E deve mover ponteiro para o menu conta
     E deve fazer logout
@@ -41,6 +40,8 @@ Funcionalidade: testes de login
     E deve esperar elemento de PSW
     E deve escrever psw invalida
     E deve clicar em submeter
-    E deve esperar o elemento de msg de psw errado
     E deve verificar erro na msg de psw errado
     E deve fechar o navegador
+
+#  Cenario: Fechar todos os navegadores abertos
+#    Entao deve fechar todos os navegadores
