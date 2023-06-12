@@ -30,6 +30,9 @@ public class Dsl {
     public void clickByXPath(String id_campo) {
         driver.findElement(By.xpath(id_campo)).click();
     }
+    public void clickByClass(String id_campo) {
+        driver.findElement(By.className(id_campo)).click();
+    }
 
     public void moverById(String id_campo) {
         WebElement element = driver.findElement(By.id(id_campo));
@@ -39,6 +42,12 @@ public class Dsl {
 
     public void moverByXPath(String id_campo) {
         WebElement element = driver.findElement(By.xpath(id_campo));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+    }
+
+    public void moverByClass(String id_campo) {
+        WebElement element = driver.findElement(By.className(id_campo));
         Actions actions = new Actions(driver);
         actions.moveToElement(element).perform();
     }

@@ -4,14 +4,15 @@ import Constantes.Constantes;
 import Dsl.Dsl;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.UnexpectedTagNameException;
 
 public class AmazonBuscadorPage {
 
     public Constantes constantes;
     private Dsl dsl;
     String menuHambueger = "nav-hamburger-menu";
-    String searchDropdownBoxXPath = "//*[@id=\"searchDropdownBox\"]";
-    String searchDropdownBox = "searchDropdownBox";
+    String searchDropdownBoxXPath = "//*[@id=\"nav-search-dropdown-card\"]/div";
+    String searchDropdownBox = "//*[@id=\"searchDropdownBox\"]";
     String searchTextBox = "//*[@id=\"twotabsearchtextbox\"]";
     String submitButton = "nav-search-submit-button";
     String sgColInner = "sg-col-inner";
@@ -38,7 +39,7 @@ public class AmazonBuscadorPage {
     }
 
     public WebElement setBuscarDropdownBox() {
-        return dsl.buscarElementoByXpath(searchDropdownBoxXPath);
+        return dsl.buscarElementoByXpath(searchDropdownBox);
 
     }
 
